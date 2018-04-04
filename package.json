@@ -1,0 +1,34 @@
+{
+	"name": "Risotto",
+	"version": "1.0.0",
+	"description": "Prueba técnica 5: Risotto",
+	"dependencies": {
+		"browser-sync": "*",
+		"gulp-autoprefixer": "*",
+		"gulp-clean-css": "*",
+		"gulp-combine-mq": "*",
+		"gulp-concat": "*",
+		"gulp-notify": "*",
+		"gulp-plumber": "*",
+		"gulp-rename": "*",
+		"gulp-sass": "*",
+		"gulp-sourcemaps": "*",
+		"gulp-uglify": "*",
+		"gulp-util": "*",
+		"run-sequence": "*",
+		"gulp-zip": "*"
+	},
+	"devDependencies": {
+		"gulp": "^3.9.1"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com:Adalab/clarke-fc-risotto-de-setas-Alienah.git"
+	},
+	"author": "Adalab",
+	"license": "MIT",
+	"homepage": "https://github.com/Adalab/clarke-fc-risotto-de-setas-Alienah"
+}
