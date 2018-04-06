@@ -1,3 +1,30 @@
-header {
-  background: $colorBlue;
+*{
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  color: $colorDark;
+  @include robotoRegular();
+}
+.main {
+  min-height: 100vh;
+  min-width: 100vw;
+  padding: 30px;
+}
+.main__inside {
+  min-height: 100vh;
+  @include flexColumnCenter ();
+}
+.title {
+  @include robotoBold ();
+}
+.main__intro {
+  padding-bottom: 30px;
+}
+.main__purchase {
+  width: 100%;
+  max-width: 520px;
+  @include flexColumnCenter ();
+
 }

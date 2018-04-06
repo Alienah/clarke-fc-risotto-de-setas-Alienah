@@ -1,13 +1,14 @@
 // core
 
 @import 'core/variables';
-// @import 'core/mixins';
+@import 'core/mixins';
+@import 'core/typography';
 
 // layout
 
 @import 'layout/common';
-
+@import 'layout/header';
 
 // components
 
-// @import 'components/buttons';
+@import 'components/purchase';

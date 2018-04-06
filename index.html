@@ -5,67 +5,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Risotto de Setas</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-  <header>
+  <header class="header">
     <img src="" alt="">
-    <h1>TU COCINA AL DÍA</h1>
+    <h1 class="title">TU COCINA AL DÍA</h1>
   </header>
-  <main>
-    <div>
-      <div>
+  <main class="main">
+    <div class="main__inside">
+      <div class="main__intro">
         <p>Elige los ingredientes del plato del día y disfruta de una comida sana.</p>
       </div>
-      <div>
-        <section>
+      <div class="main__purchase">
+        <section class="section section--head">
           <p>INGREDIENTES</p>
-          <H2>Nombre del plato</H2>
+          <H2 class="title--dish">Nombre del plato</H2>
           <a href="">Seleccionar todo</a> | <a href="">Deseleccionar todo</a>
         </section>
-        <section>
-          <ul>
-            <li>
-              <div>
-                <input type="checkbox" name="" value="">
-                <input type="text">
-                <div>
-                  <h3>Artículo</h3>
-                  <p>Marca</p>
-                  <p>x Kg</p>
+        <section class="section section--body">
+          <ul class="items-list">
+            <li class="item">
+              <div class="item--inside">
+                <div class="item--input">
+                  <input type="checkbox" name="" value="">
                 </div>
-                <p>X,XX €</p>
+                <div class="item--input">
+                  <input type="text" class="input--quantity">
+                </div>
+                <div class="item--data">
+                  <h3 class="title">Artículo</h3>
+                  <p class="data">Marca</p>
+                  <p class="data bold">x Kg</p>
+                </div>
+                <p class="item--price bold">X,XX €</p>
               </div>
             </li>
-            <li>
-              <div>
-                <input type="checkbox" name="" value="">
-                <input type="text">
-                <div>
-                  <h3>Artículo</h3>
-                  <p>Marca</p>
-                  <p>x Kg</p>
+            <li class="item">
+              <div class="item--inside">
+                <input type="checkbox" class="checkbox" name="" value="">
+                <input type="text" class="input--quantity">
+                <div class="item--data">
+                  <h3 class="title">Artículo</h3>
+                  <p class="data">Marca</p>
+                  <p class="data bold">x Kg</p>
                 </div>
-                <p>X,XX €</p>
+                <p class="item--price bold">X,XX €</p>
               </div>
             </li>
           </ul>
         </section>
-        <section>
-          <p>Items: <span>1</span></p>
-          <div>
+        <section class="section section--footer">
+          <p>Items: <span class="bold">1</span></p>
+          <div class="footer__section">
             <span>Subtotal</span>
-            <span>2,95 €</span>
+            <span class="bold">2,95 €</span>
           </div>
-          <div>
+          <div class="footer__section">
             <span>Gastos de envío</span>
-            <span>7,00 €</span>
+            <span class="bold">7,00 €</span>
           </div>
-          <div>
-            <span>Total</span>
-            <span>9,95 €</span>
+          <div class="footer__section">
+            <span class="bold">Total</span>
+            <span class="total-price bold">9,95 €</span>
           </div>
-          <button type="submit" name="button">Comprar ingredientes <span>9,95 €</span></button>
+          <button type="submit" class="purchase__btn" name="button">Comprar ingredientes <span>9,95 €</span></button>
         </section>
       </div>
     </div>
