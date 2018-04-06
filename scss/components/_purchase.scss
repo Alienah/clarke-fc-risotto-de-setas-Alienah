@@ -48,11 +48,14 @@ input[type=checkbox] {
 .item--price {
   grid-column: 11 /13;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
   color: $colorGreen;
   font-size: 20px;
+  &:after{
+    content: '€';
+  }
 }
 
 /*TOTAL*/

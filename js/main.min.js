@@ -36,7 +36,7 @@ fetch('https://raw.githubusercontent.com/Adalab/recipes-data/master/rissoto-seta
             <p class="data">${ ingredients[i].brand? `Marca: ${ingredients[i].brand}` : ''}</p>
             <p class="data bold">${ingredients[i].quantity}</p>
           </div>
-          <p class="item--price bold" id="item${i}--price">${ingredients[i].price} €</p>
+          <p class="item--price bold" id="item${i}--price">${ingredients[i].price}</p>
         </div>
       </li>`
     ingredientsList.insertAdjacentHTML('beforeend', item);
@@ -54,23 +54,22 @@ fetch('https://raw.githubusercontent.com/Adalab/recipes-data/master/rissoto-seta
   console.log(error);
 })
 
-// function calculateValueItem (e){
-//
-//   const inputQuantityValue = e.target.value;
-//   const idInput = e.target.getAttribute('id');
-//   // const price = document.getElementById(`item${i}--price`);
-//   // const totalItem = inputQuantityValue * price;
-//   console.log(idInput);
-// }
-//
-// function setFunctionOnchange (i) {
-// let inputQuantity = document.querySelectorAll('input[type=text]');
-// console.log(inputQuantity);
-// for (var i = 0; i < inputQuantity.length; i++) {
-//
-//   document.querySelector(`.input-${i}`).addEventListener('change', calculateValueItem);
-// }
-// }
+function calculatePriceItemSelected (e){
+
+  const inputQuantityValue = e.target.value;
+  const idParent = e.target.parentElement.parentElement;
+  const price = idParent.children[3].innerHTML;
+  const totalItem = inputQuantityValue * price;
+  console.log(totalItem);
+}
+
+function setFunctionOnchange (i) {
+let inputQuantity = document.querySelectorAll('input[type=text]');
+console.log(inputQuantity);
+for (var i = 0; i < inputQuantity.length; i++) {
+  document.querySelector(`.input-${i}`).addEventListener('change', calculatePriceItemSelected);
+}
+}
 
 function checkAllItems(e){
   e.preventDefault();
