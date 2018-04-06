@@ -25,7 +25,7 @@ fetch('https://raw.githubusercontent.com/Adalab/recipes-data/master/rissoto-seta
           </div>
           <div class="item--data">
             <h3 class="title">${ingredients[i].product}</h3>
-            <p class="data">${ ingredients[i].brand? ingredients[i].brand : ''}</p>
+            <p class="data">${ ingredients[i].brand? `Marca: ${ingredients[i].brand}` : ''}</p>
             <p class="data bold">${ingredients[i].quantity}</p>
           </div>
           <p class="item--price bold">${ingredients[i].price} €</p>
