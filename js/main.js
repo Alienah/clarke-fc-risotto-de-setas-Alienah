@@ -51,7 +51,6 @@ function checkAll(e){
   e.preventDefault();
 	const items = document.getElementsByName('item-selected');
 	for(let i=0; i<items.length; i++){
-		if(items[i].type=='checkbox')
 		items[i].checked=true;
 	}
 }
@@ -60,7 +59,6 @@ function uncheckAll(e){
   e.preventDefault();
 	const items = document.getElementsByName('item-selected');
 	for(let i=0; i<items.length; i++){
-		if(items[i].type=='checkbox')
 		items[i].checked=false;
 	}
 }
