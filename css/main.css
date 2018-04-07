@@ -188,6 +188,7 @@ input[type=checkbox] {
   color: white;
   font-size: 20px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=main.css.map */
