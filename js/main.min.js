@@ -10,12 +10,12 @@ const ingredientsList = document.querySelector('.items-list');
 // const eachPricesContainer = document.querySelectorAll('.item--price')
 let linePrices;
 let totalQuantity;
+let price;
 const numItems = document.querySelector('.num-items');
 const subtotalContainer = document.querySelector('.subtotal');
 const totalContainer = document.querySelector('.total-price');
 let total = 0;
 const totalButton = document.querySelector('.price-button');
-
 
 fetch('https://raw.githubusercontent.com/Adalab/recipes-data/master/rissoto-setas.json')
 .then(function(response){
@@ -36,7 +36,7 @@ fetch('https://raw.githubusercontent.com/Adalab/recipes-data/master/rissoto-seta
       `<li class="item">
         <div class="item--inside">
           <div class="item--input">
-            <input type="checkbox" name="item-selected" value="${ingredients[i].price}">
+            <input type="checkbox" class="input--checkbox" name="item-selected" value="${ingredients[i].price}">
           </div>
           <div class="item--input">
             <input type="text" class="input--quantity input-${i}" id="item${i}--quantity" name="input--quantity" value="1">
@@ -69,7 +69,7 @@ function calculatePriceItemSelected (e){
   const inputQuantityValue = parseInt(e.target.value);
   const valueParent = e.target.parentElement.parentElement;
   const priceContainer = valueParent.children[3];
-  const price = parseFloat(valueParent.children[0].children[0].value);
+  price = parseFloat(valueParent.children[0].children[0].value);
   const totalItem = (inputQuantityValue * price).toFixed(2);
   priceContainer.innerHTML = totalItem;
 
@@ -114,11 +114,20 @@ function recalculateTotal () {
 function checkAllItems(e){
   e.preventDefault();
 	const items = document.getElementsByName('item-selected');
-	for(let i=0; i<items.length; i++){
-		items[i].checked=true;
-	}
+  price = document.querySelectorAll('.input--checkbox');
+  linePrices = document.querySelectorAll('.item--price');
   inputQuantity = document.querySelectorAll('input[type=text]');
   totalQuantity = 0;
+
+  for (var i = 0; i < linePrices.length; i++) {
+    for (var i = 0; i < price.length; i++) {
+      linePrices[i].innerHTML = price[i].value;
+    }
+  }
+
+	for(let i=0; i<items.length; i++){
+		items[i].checked=true;
+	}  
 
   for (var i = 0; i < inputQuantity.length; i++) {
     inputQuantity[i].defaultValue = 1;
