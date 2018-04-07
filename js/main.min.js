@@ -3,6 +3,8 @@ const dishTitle = document.querySelector('.title--dish');
 const shippingCostContainer = document.querySelector('.shipping-cost');
 let listHTML = '';
 const ingredientsList = document.querySelector('.items-list');
+let subtotalContainer = document.querySelector('.subtotal');
+let subtotal = 0;
 
 
 fetch('https://raw.githubusercontent.com/Adalab/recipes-data/master/rissoto-setas.json')
@@ -56,21 +58,35 @@ fetch('https://raw.githubusercontent.com/Adalab/recipes-data/master/rissoto-seta
 
 function calculatePriceItemSelected (e){
 
-  const inputQuantityValue = e.target.value;
-  const idParent = e.target.parentElement.parentElement;
-  const price = idParent.children[3].innerHTML;
-  const totalItem = inputQuantityValue * price;
+  const inputQuantityValue = parseInt(e.target.value);
+  const valueParent = e.target.parentElement.parentElement;
+  const priceContainer = valueParent.children[3];
+  const price = parseFloat(valueParent.children[3].innerHTML);
+  const totalItem = (inputQuantityValue * price).toFixed(2);
   console.log(totalItem);
+  priceContainer.innerHTML = totalItem;
+
+  recalculateTotal();
 }
 
 function setFunctionOnchange (i) {
-let inputQuantity = document.querySelectorAll('input[type=text]');
-console.log(inputQuantity);
-for (var i = 0; i < inputQuantity.length; i++) {
-  document.querySelector(`.input-${i}`).addEventListener('change', calculatePriceItemSelected);
-}
+  let inputQuantity = document.querySelectorAll('input[type=text]');
+  console.log(inputQuantity);
+  for (var i = 0; i < inputQuantity.length; i++) {
+    document.querySelector(`.input-${i}`).addEventListener('change', calculatePriceItemSelected);
+  }
 }
 
+function recalculateTotal () {
+  let linePrices = document.querySelectorAll('.item--price');
+  console.log(linePrices);
+  for (var i = 0; i < linePrices.length; i++) {
+    subtotal += parseFloat(linePrices[i].innerHTML);
+  
+  }
+  console.log(subtotal);
+}
+recalculateTotal();
 function checkAllItems(e){
   e.preventDefault();
 	const items = document.getElementsByName('item-selected');
