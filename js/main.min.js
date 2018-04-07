@@ -6,7 +6,7 @@ let shippingCost;
 let listHTML = '';
 const ingredientsList = document.querySelector('.items-list');
 const subtotalContainer = document.querySelector('.subtotal');
-let subtotal = 0;
+
 const totalContainer = document.querySelector('.total-price');
 let total = 0;
 const totalButton = document.querySelector('.price-button');
@@ -83,6 +83,7 @@ function setFunctionOnchange (i) {
 }
 
 function recalculateTotal () {
+  let subtotal = 0;
   let linePrices = document.querySelectorAll('.item--price');
   for (var i = 0; i < linePrices.length; i++) {
     subtotal += parseFloat(linePrices[i].innerHTML);
