@@ -1,10 +1,15 @@
 'use strict';
 const dishTitle = document.querySelector('.title--dish');
 const shippingCostContainer = document.querySelector('.shipping-cost');
+let currency;
+let shippingCost;
 let listHTML = '';
 const ingredientsList = document.querySelector('.items-list');
-let subtotalContainer = document.querySelector('.subtotal');
+const subtotalContainer = document.querySelector('.subtotal');
 let subtotal = 0;
+const totalContainer = document.querySelector('.total-price');
+let total = 0;
+const totalButton = document.querySelector('.price-button');
 
 
 fetch('https://raw.githubusercontent.com/Adalab/recipes-data/master/rissoto-setas.json')
@@ -14,8 +19,8 @@ fetch('https://raw.githubusercontent.com/Adalab/recipes-data/master/rissoto-seta
 .then(function(json) {
   const recipe = json.recipe;
   const ingredients = recipe.ingredients;
-  const currency = recipe.currency;
-  const shippingCost = parseFloat(recipe['shipping-cost']);
+  currency = recipe.currency;
+  shippingCost = parseFloat(recipe['shipping-cost']);
 
   dishTitle.innerHTML = recipe.name;
   shippingCostContainer.innerHTML = `${shippingCost.toFixed(2)}  ${currency}`;
@@ -79,12 +84,13 @@ function setFunctionOnchange (i) {
 
 function recalculateTotal () {
   let linePrices = document.querySelectorAll('.item--price');
-  console.log(linePrices);
   for (var i = 0; i < linePrices.length; i++) {
     subtotal += parseFloat(linePrices[i].innerHTML);
-  
+
   }
-  console.log(subtotal);
+  subtotalContainer.innerHTML = `${subtotal.toFixed(2)} ${currency}`;
+  totalContainer.innerHTML = `${(subtotal + shippingCost).toFixed(2)} ${currency}`;
+  totalButton.innerHTML = totalContainer.innerHTML;
 }
 recalculateTotal();
 function checkAllItems(e){
