@@ -66,7 +66,7 @@ function calculatePriceItemSelected (e){
   const inputQuantityValue = parseInt(e.target.value);
   const valueParent = e.target.parentElement.parentElement;
   const priceContainer = valueParent.children[3];
-  const price = parseFloat(valueParent.children[3].innerHTML);
+  const price = parseFloat(valueParent.children[0].children[0].value);
   const totalItem = (inputQuantityValue * price).toFixed(2);
   console.log(totalItem);
   priceContainer.innerHTML = totalItem;
