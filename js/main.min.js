@@ -7,6 +7,9 @@ let shippingCost;
 let listHTML = '';
 let inputQuantity;
 const ingredientsList = document.querySelector('.items-list');
+// const eachPricesContainer = document.querySelectorAll('.item--price')
+let linePrices;
+let totalQuantity;
 const numItems = document.querySelector('.num-items');
 const subtotalContainer = document.querySelector('.subtotal');
 const totalContainer = document.querySelector('.total-price');
@@ -26,8 +29,6 @@ fetch('https://raw.githubusercontent.com/Adalab/recipes-data/master/rissoto-seta
 
   dishTitle.innerHTML = recipe.name;
   shippingCostContainer.innerHTML = `${shippingCost.toFixed(2)}  ${currency}`;
-
-
 
   for (let i = 0; i < ingredients.length; i++) {
 
@@ -70,17 +71,15 @@ function calculatePriceItemSelected (e){
   const priceContainer = valueParent.children[3];
   const price = parseFloat(valueParent.children[0].children[0].value);
   const totalItem = (inputQuantityValue * price).toFixed(2);
-  console.log(totalItem);
   priceContainer.innerHTML = totalItem;
 
-  recalculateTotal();
   sumItems()
-
+  recalculateTotal();
 }
 
-let setFunctionOnchange = (i) => {
+function setFunctionOnchange (i) {
   inputQuantity = document.querySelectorAll('input[type=text]');
-  let totalQuantity = '';
+  totalQuantity = 0;
 
   for (var i = 0; i < inputQuantity.length; i++) {
     document.querySelector(`.input-${i}`).addEventListener('change', calculatePriceItemSelected);
@@ -89,9 +88,19 @@ let setFunctionOnchange = (i) => {
   }
 }
 
+function sumItems () {
+  inputQuantity = document.querySelectorAll('input[type=text]');
+  totalQuantity = 0;
+
+  for (var i = 0; i < inputQuantity.length; i++) {
+    totalQuantity += parseInt(inputQuantity[i].value);
+  }
+  numItems.innerHTML = totalQuantity;
+}
+
 function recalculateTotal () {
   let subtotal = 0;
-  let linePrices = document.querySelectorAll('.item--price');
+  linePrices = document.querySelectorAll('.item--price');
   for (var i = 0; i < linePrices.length; i++) {
     subtotal += parseFloat(linePrices[i].innerHTML);
   }
@@ -100,15 +109,7 @@ function recalculateTotal () {
   totalButton.innerHTML = totalContainer.innerHTML;
 }
 
-let sumItems = () => {
-  inputQuantity = document.querySelectorAll('input[type=text]');
-  let totalQuantity = 0;
 
-  for (var i = 0; i < inputQuantity.length; i++) {
-    totalQuantity += parseInt(inputQuantity[i].value);
-  }
-  numItems.innerHTML = totalQuantity;
-}
 
 function checkAllItems(e){
   e.preventDefault();
@@ -116,14 +117,39 @@ function checkAllItems(e){
 	for(let i=0; i<items.length; i++){
 		items[i].checked=true;
 	}
+  inputQuantity = document.querySelectorAll('input[type=text]');
+  totalQuantity = 0;
+
+  for (var i = 0; i < inputQuantity.length; i++) {
+    inputQuantity[i].defaultValue = 1;
+    inputQuantity[i].value = 1;
+    console.log(inputQuantity);
+  }
+  numItems.innerHTML = totalQuantity;
+  recalculateTotal();
 }
 
 function uncheckAllItems(e){
   e.preventDefault();
 	const items = document.getElementsByName('item-selected');
+  inputQuantity = document.querySelectorAll('input[type=text]');
+  linePrices = document.querySelectorAll('.item--price');
+  totalQuantity = 0;
+
 	for(let i=0; i<items.length; i++){
 		items[i].checked=false;
 	}
+  for (var i = 0; i < inputQuantity.length; i++) {
+    inputQuantity[i].defaultValue = 0;
+    inputQuantity[i].value = 0;
+    totalQuantity = 0;
+  }
+  for (var i = 0; i < linePrices.length; i++) {
+    linePrices[i].innerHTML = 0;
+  }
+
+  numItems.innerHTML = totalQuantity;
+  recalculateTotal();
 }
 
 document.querySelector('.btn--check-all').addEventListener('click', checkAllItems);
