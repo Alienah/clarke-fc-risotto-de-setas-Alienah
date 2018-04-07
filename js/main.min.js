@@ -1,12 +1,14 @@
 'use strict';
+
 const dishTitle = document.querySelector('.title--dish');
 const shippingCostContainer = document.querySelector('.shipping-cost');
 let currency;
 let shippingCost;
 let listHTML = '';
+let inputQuantity;
 const ingredientsList = document.querySelector('.items-list');
+const numItems = document.querySelector('.num-items');
 const subtotalContainer = document.querySelector('.subtotal');
-
 const totalContainer = document.querySelector('.total-price');
 let total = 0;
 const totalButton = document.querySelector('.price-button');
@@ -72,13 +74,18 @@ function calculatePriceItemSelected (e){
   priceContainer.innerHTML = totalItem;
 
   recalculateTotal();
+  sumItems()
+
 }
 
-function setFunctionOnchange (i) {
-  let inputQuantity = document.querySelectorAll('input[type=text]');
-  console.log(inputQuantity);
+let setFunctionOnchange = (i) => {
+  inputQuantity = document.querySelectorAll('input[type=text]');
+  let totalQuantity = '';
+
   for (var i = 0; i < inputQuantity.length; i++) {
     document.querySelector(`.input-${i}`).addEventListener('change', calculatePriceItemSelected);
+
+    totalQuantity = inputQuantity[i];
   }
 }
 
@@ -87,13 +94,22 @@ function recalculateTotal () {
   let linePrices = document.querySelectorAll('.item--price');
   for (var i = 0; i < linePrices.length; i++) {
     subtotal += parseFloat(linePrices[i].innerHTML);
-
   }
   subtotalContainer.innerHTML = `${subtotal.toFixed(2)} ${currency}`;
   totalContainer.innerHTML = `${(subtotal + shippingCost).toFixed(2)} ${currency}`;
   totalButton.innerHTML = totalContainer.innerHTML;
 }
-recalculateTotal();
+
+let sumItems = () => {
+  inputQuantity = document.querySelectorAll('input[type=text]');
+  let totalQuantity = 0;
+
+  for (var i = 0; i < inputQuantity.length; i++) {
+    totalQuantity += parseInt(inputQuantity[i].value);
+  }
+  numItems.innerHTML = totalQuantity;
+}
+
 function checkAllItems(e){
   e.preventDefault();
 	const items = document.getElementsByName('item-selected');
