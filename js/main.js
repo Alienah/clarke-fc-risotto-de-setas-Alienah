@@ -30,35 +30,37 @@ fetch('https://raw.githubusercontent.com/Adalab/recipes-data/master/rissoto-seta
 
   dishTitle.innerHTML = recipe.name;
   shippingCostContainer.innerHTML = `${shippingCost.toFixed(2)}  ${currency}`;
-
+  let item = '';
   for (let i = 0; i < ingredients.length; i++) {
 
-    let item =
-    `<li class="item">
-    <div class="item--inside">
-      <div class="item--input">
-        <input type="checkbox" class="input--checkbox input-${i}--checkbox" name="item-selected" value="${ingredients[i].price}">
-        </div>
-        <div class="item--input">
-          <input type="text" class="input--quantity input-${i}" id="item${i}--quantity" name="input--quantity" value="1">
-          </div>
-          <div class="item--data">
-            <h3 class="title">${ingredients[i].product}</h3>
-            <p class="data">${ ingredients[i].brand? `Marca: ${ingredients[i].brand}` : ''}</p>
-            <p class="data bold">${ingredients[i].quantity}</p>
-          </div>
-          <p class="item--price bold" id="item${i}--price">${ingredients[i].price}</p>
-        </div>
-      </li>`
-      ingredientsList.insertAdjacentHTML('beforeend', item);
+    item += buildIngredients(i, ingredients[i]);
 
     }
+    ingredientsList.insertAdjacentHTML('beforeend', item);
     setFunctionsOnchange();
 
   })
   .catch(function(error){
     console.log(error);
   })
+
+  const buildIngredients = (i, ingredients) =>
+    `<li class="item">
+    <div class="item--inside">
+      <div class="item--input">
+        <input type="checkbox" class="input--checkbox input-${i}--checkbox" name="item-selected" value="${ingredients.price}">
+        </div>
+        <div class="item--input">
+          <input type="text" class="input--quantity input-${i}" id="item${i}--quantity" name="input--quantity" value="1">
+          </div>
+          <div class="item--data">
+            <h3 class="title">${ingredients.product}</h3>
+            <p class="data">${ ingredients.brand? `Marca: ${ingredients.brand}` : ''}</p>
+            <p class="data bold">${ingredients.quantity}</p>
+          </div>
+          <p class="item--price bold" id="item${i}--price">${ingredients.price}</p>
+        </div>
+      </li>`;
 
   function calculatePriceItemSelected (e){
     e.preventDefault();
